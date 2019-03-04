@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Shiba Inu's Home Accounting</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="uikit-3/css/uikit.min.css" />
+        <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <script src="uikit-3/js/uikit.min.js"></script>
+        <script src="js/globalscript.js"></script>
+        <script src="js/myimport.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" />
+    </head>
+    <body>
+        
+            <div class="uk-container uk-margin-top">
+                <div class="uk-grid">
+                    <div class="uk-width-1-6">
+                        <ul class="uk-nav">
+                            <li class="uk-active"><a href="index.html">Overview</a></li>
+                            <li ><a href="monthly.html">Monthly</a></li>
+                            <li ><a href="entry.html">Entry</a></li>
+                            <li >Import</li>
+                            <li><a href="yearly.html">Yearly</a></li>
+                            <li ><a href="setting.html">Settings</a></li>
+                        </ul>
+                    </div>
+                    <div class="uk-width-5-6">
+                        <label><input class="uk-radio" type="radio" name="radioImport" checked value="FILE" > Import New file</label>&nbsp;&nbsp;&nbsp;
+                        <label><input class="uk-radio" type="radio" name="radioImport" id="rdImport" value="DB"> View Imported Transactions</label>
+                        <br><br>
+                        <div id="fileDiv">
+                            <form id="impCsvForm" action="" method="POST"></form>
+                        <table>
+                            <tr><td>Upload CSV</td><td><input type="file" name="fileInput" id="fileInput" />
+                                    <button type="button" id="uploadBtn">Upload</button></td></tr>
+                            <tr><td>&nbsp;</td><td></td></tr><tr><td>&nbsp;</td><td></td></tr>
+                        </table>
+                        </div>
+                        <br>
+                        <div id="dbDiv">
+                            <select id="impDates">
+                            </select>
+                        <table id="impTranTab" class="display" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Tran Date</th><th>Posted Date</th>
+                                    <th>Description</th><th>Category</th>
+                                    <th>Credit</th><th>Debit</th>
+                                    <th>Import Amt</th>
+                                    <th>Memo</th><th>Mark</th><th></th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Tran Date</th><th>Posted Date</th>
+                                    <th>Description</th><th>Category</th>
+                                    <th>Credit</th><th>Debit</th>
+                                    <th>Import Amt</th>
+                                    <th>Memo</th><th>Mark</th><th></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                            
+                        </div>
+        <div id="modal-modify" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body">
+                <div class="uk-modal-title" id="popTitle">Modify Transaction</div>
+                <button class="uk-modal-close-default" type="button" uk-close></button>
+                <table class="uk-table uk-table-small uk-table-divider" id="modifyTb">
+                    
+                </table>
+                            <p class="uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+            <button class="uk-button uk-button-primary" type="button" id="save">Save</button>
+            </p>
+            </div>
+
+        </div>
+                    </div>
+                </div>
+            </div>
+        <form id="impForm" method="POST">
+            <input type="hidden" name="impSeqIdSave" >
+            <input type="hidden" name="markIndSave" >
+        </form>
+    </body>
+</html>

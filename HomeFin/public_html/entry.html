@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Shiba Inu's Home Accounting</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--        <link rel="stylesheet" href="uikit-3/css/uikit.min.css" />-->
+        <link rel="stylesheet" href="uikit-2/css/uikit.min.css" />
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="uikit-2/js/uikit.min.js"></script>
+<!--        <script src="uikit-3/js/uikit.min.js"></script>-->
+        <script src="js/globalscript.js"></script>
+        <script src="js/myentry.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
+    </head>
+    <body>
+        
+            <div class="uk-container uk-margin-top">
+                <div class="uk-grid">
+                    <div class="uk-width-1-5">
+                        <ul class="uk-nav">
+                            <li class="uk-active"><a href="index.html">Overview</a></li>
+                            <li class="uk-active"><a href="monthly.html">Monthly</a></li>
+                            <li><a href="#">Entry</a></li>
+                            <li class="uk-active"><a href="yearly.html">Yearly</a></li>
+                            <li class="uk-active"><a href="import.html">Import</a></li>
+                            <li class="uk-active"><a href="setting.html">Settings</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="uk-width-4-5">
+                        <form id ="entryForm" class='uk-form' action="" method="POST">
+                            <div class="uk-margin">
+                                <select id="sourceId" name="sourceId" class="uk-select uk-form-width-medium">
+                                    <option value="">Select Source</option>
+                                    <option value="CAPITAL_ONE">CAPITAL_ONE</option>
+                                    <option value="TANGERINE">TANGERINE</option>
+                                    <option value="TD">TD</option>
+                                    <option value="TD">TANGERINE_MC</option>
+                                    <option value="TD">PC_MASTER</option>
+                                </select>  
+                            </div>
+                            <div class="uk-margin">
+                                <select id="categoryId" name="categoryId" class="uk-select uk-form-width-medium"></select>
+                            </div><div class="uk-margin">
+                                <input type="text" id="transactionDate" placeholder="Transaction Date" name="transactionDate">
+                            </div><div class="uk-margin">
+                                <input name="transAmount" class="uk-input uk-form-width-medium" placeholder="Transaction Amount" />
+                            </div><div class="uk-margin">
+                                <TEXTAREA NAME="description" COLS=40 ROWS=2 placeholder="Description" class="uk-textarea"></TEXTAREA>
+</div><div class="uk-margin"><button class="uk-button uk-button-default" type="submit" id="submitBtn">Submit</button></div>
+                        </form>    
+                        
+                </div>
+            </div>
+        </div>
+           
+    </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="uikit-3/css/uikit.min.css" />
+        <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <script src="uikit-3/js/uikit.min.js"></script>
+        <script src="js/globalscript.js"></script>
+        <script src="js/myyear.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" />
+    </head>
+    <body>
+        <div class="uk-container uk-margin-top">
+            <div class="uk-grid">
+                <div class="uk-width-1-6">
+                    <ul class="uk-nav">
+                        <li class="uk-active"><a href="index.html">Overview</a></li>
+                        <li><a href="monthly.html">Monthly</a></li>
+                        <li><a href="entry.html">Entry</a></li>
+                        <li>Yearly</li>
+                        <li><a href="import.html">Import</a></li>
+                        <li><a href="setting.html">Settings</a></li>
+                    </ul>
+                </div>
+                <div class="uk-width-5-6">
+                    <div style="display:inline">
+                        <span>
+                            <select id="yearLov">
+                            </select>
+                        </span>
+                        <span>
+                            <button id="searchBtn">Search</button>
+                        </span>
+                    </div>
+                    <br><br>
+                    <div class="uk-block" id="monthlyDiv">
+                        
+                        <table id="sumYrTab" class="uk-table uk-table-striped uk-text-small" style="width:100%">
+     
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal-example" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body">
+                <div class="uk-modal-title" id="popTitle"></div>
+                <button class="uk-modal-close-default" type="button" uk-close></button>
+                <table class="uk-table uk-table-small uk-table-divider" id="catSumYrTab">
+                  
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
