@@ -25,6 +25,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import oracle.jdbc.OracleCallableStatement;
 import oracle.jdbc.OraclePreparedStatement;
 
 /**
@@ -291,6 +292,40 @@ public class ImportTransServiceImpl extends BaseServiceImpl implements ImportTra
             closeConn(conn, rs, stmt);
         }
         return ret;
+    }
+    
+    @Override
+    public void updateTransactions(String importDate) {
+        Date statementDate = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+        try {
+            statementDate = sdf.parse(importDate);
+        } catch (ParseException ex) {
+            Logger.getLogger(ImportTransServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        final String sqlInsert = "{call IMPORT_TRANSACTION_PK.import(?)} ";
+        Connection conn = super.getConnection();
+        OracleCallableStatement stmt = null;
+
+        try {
+            stmt = (OracleCallableStatement) conn.prepareCall(sqlInsert);
+            stmt.setTimestamp(1, new Timestamp(statementDate.getTime()));
+            stmt.executeUpdate();
+            
+            conn.commit();
+
+        } catch (SQLException ex) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(ImportTransServiceImpl.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+            Logger.getLogger(ImportTransServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConn(conn, null, stmt);
+        }
+
     }
 
 }

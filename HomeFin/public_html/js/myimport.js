@@ -7,6 +7,9 @@ $(document).ready(function () {
     $("#genCsvBtn").click(function () {
         clickGenerateCsvBtn();
     });
+    $("#updateBtn").click(function () {
+        clickUpdateTranBtn();
+    });
     $("input[name='radioImport']").change(function () {
 
         var radioValue = $("input[name='radioImport']:checked").val();
@@ -44,6 +47,22 @@ function clickUploadBtn() {
 }
 
 function clickGenerateCsvBtn() {
+    var valDate = $('#impDates option:selected').val();
+    var url = "http://localhost:8080/HomeFinServices/rest/Import/markInd/" + valDate;
+    $.ajax({
+        type: 'GET',
+        url: url,
+        dataType: "text", // data type of response
+        error: function (err) {
+            alert("error "+err);
+        },
+        success: function (data) {
+            alert(data);
+        }
+    });
+}
+
+function clickUpdateTranBtn() {
     var valDate = $('#impDates option:selected').val();
     var url = "http://localhost:8080/HomeFinServices/rest/Import/markInd/" + valDate;
     $.ajax({

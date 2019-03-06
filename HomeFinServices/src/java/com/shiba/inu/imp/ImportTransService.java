@@ -21,4 +21,6 @@ public interface ImportTransService extends BaseService{
     
     String updateImportTransaction(String markInd, Long importSeqId);
     
+    void updateTransactions(String importDate);
+    
 }

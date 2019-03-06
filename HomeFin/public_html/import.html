@@ -38,18 +38,19 @@ and open the template in the editor.
                         <div id="fileDiv">
                             <form id="impCsvForm" action="" method="POST"></form>
                         <table>
-                            <tr><td>Upload CSV</td><td><input type="file" name="fileInput" id="fileInput" />
-                                    <button type="button" id="uploadBtn">Upload</button></td></tr>
-                            <tr><td>&nbsp;</td><td></td></tr><tr><td>&nbsp;</td><td></td></tr>
+                            <tr><td>Upload CSV</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type="file" name="fileInput" id="fileInput" />
+                                    <button type="button" id="uploadBtn" class="uk-button uk-button-primary">Upload</button></td></tr>
+                            <tr><td>&nbsp;</td><td></td><td></td></tr>
                         </table>
                         </div>
-                        <br>
                         <div id="dbDiv">
                             <span>
                             <select id="impDates">
                             </select>
                             </span>
-                            <span class="uk-margin-large-left">&nbsp;</span><span><button type="button" id="genCsvBtn">Generate CSV File</button></span>
+                            <span class="uk-margin-large-left">&nbsp;</span><span><button type="button" id="genCsvBtn" class="uk-button uk-button-primary">Generate CSV File</button></span>
+                            <span class="uk-margin-small-left">&nbsp;</span>
+                            <span><button type="button" id="updateBtn" class="uk-button uk-button-primary">Update Transactions</button></span>
                         <table id="impTranTab" class="display" width="100%">
                             <thead>
                                 <tr>

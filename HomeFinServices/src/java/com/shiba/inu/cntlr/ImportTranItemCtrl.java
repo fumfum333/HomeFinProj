@@ -76,5 +76,14 @@ public class ImportTranItemCtrl extends BaseCntlr {
         String ret = service.updateImportTransaction(markInd, Long.parseLong(impSeqId));
         return Response.ok(ret).build();
     }
+    
+    @POST
+    @Path("/updateTrans")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response updateTransactions(@FormParam("importDate") String importDate) {
+        service.updateTransactions(importDate);
+        return Response.ok("Updated").build();
+    }
       
 }

@@ -219,8 +219,15 @@ public class TransactionServiceImpl extends BaseServiceImpl implements Transacti
                 BigDecimal retNum = (BigDecimal)stmt.getBigDecimal(6);
                 tranItem.setTransactionId(retNum.longValue());
             }
+            
+            conn.commit();
 
         } catch (SQLException ex) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(TransactionServiceImpl.class.getName()).log(Level.SEVERE, null, ex1);
+            }
             Logger.getLogger(TransactionServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             closeConn(conn, null, stmt);
