@@ -21,6 +21,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -137,15 +138,17 @@ public class ImportTransServiceImpl extends BaseServiceImpl implements ImportTra
                 item.setDescription(attributes[3]);
                 item.setCategory(attributes[4]);
                 if (attributes[5] != null && !"".equals(attributes[5])) {
-                    item.setDebit(new BigDecimal(attributes[5]));
+                    item.setDebit(new BigDecimal(attributes[5].trim()));
                 }
 
                 if (attributes.length > 6) {
-                    item.setCredit(new BigDecimal(attributes[6]));
+                    item.setCredit(new BigDecimal(attributes[6].trim()));
                 }
 
             } catch (ParseException ex) {
-                Logger.getLogger(ImportTransServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ImportTransServiceImpl.class.getName()).log(Level.SEVERE, Arrays.toString(attributes), ex);
+            } catch (Exception ex) {
+                Logger.getLogger(ImportTransServiceImpl.class.getName()).log(Level.SEVERE, Arrays.toString(attributes), ex);
             }
 
         }

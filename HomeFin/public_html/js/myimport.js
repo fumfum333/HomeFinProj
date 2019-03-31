@@ -64,18 +64,18 @@ function clickGenerateCsvBtn() {
 
 function clickUpdateTranBtn() {
     var valDate = $('#impDates option:selected').val();
-    var url = "http://localhost:8080/HomeFinServices/rest/Import/markInd/" + valDate;
-    $.ajax({
-        type: 'GET',
-        url: url,
-        dataType: "text", // data type of response
-        error: function (err) {
-            alert("error "+err);
-        },
-        success: function (data) {
-            alert(data);
+    
+    $('input[name="updateImportDate"]').val(valDate);
+    //$( "#impForm" ).submit();
+
+    $.post("http://localhost:8080/HomeFinServices/rest/Pend/update", $("#updateForm").serialize()).done(function (data) {
+        if (data == "Updated") {
+
+            alert("Transactions Updated!")
         }
+
     });
+
 }
 
 function showHideUploadComp(doShow) {
@@ -118,6 +118,10 @@ function showImportTrans() {
 function displayImpData(importDate) {
     var url = "http://localhost:8080/HomeFinServices/rest/Pend/" + importDate;
     var arrayReturn = [];
+    var impTranTable = $("#impTranTab");
+    impTranTable.empty();
+    impTranTable.append("<thead><tr><th>Id</th><th>Tran Date</th><th>Posted Date</th><th>Description</th><th>Category</th><th>Credit</th><th>Debit</th><th>Import Amt</th><th>Memo</th><th>Mark</th><th></th></tr></thead>");
+    
     $.ajax({
         type: 'GET',
         url: url,
@@ -127,11 +131,21 @@ function displayImpData(importDate) {
         },
         success: function (data) {
             for (var i = 0, len = data.length; i < len; i++) {
-                arrayReturn.push([data[i].importSeqId, data[i].transactionDate, data[i].postedDate,
-                    data[i].description, data[i].category, data[i].credit,
-                    data[i].debit, data[i].importAmount, data[i].memo, data[i].markInd], data[i].importDate);
+//                arrayReturn.push([data[i].importSeqId, data[i].transactionDate, data[i].postedDate,
+//                    data[i].description, data[i].category, data[i].credit,
+//                    data[i].debit, data[i].importAmount, data[i].memo, data[i].markInd, data[i].importDate]);
+                var checkStr = "<input type='checkbox' name='markInd' onclick='updateImpData("+data[i].importSeqId+",this)' ";
+                if(data[i].markInd == "Y") {
+                    checkStr += "checked";
+                }
+                checkStr += " >"
+                
+                impTranTable.append("<tr><td>"+data[i].importSeqId+"</td><td>"+data[i].transactionDate+"</td><td>"+data[i].postedDate+"</td><td>"+
+                                    data[i].description+"</td><td>"+data[i].category+"</td><td>"+data[i].credit+"</td><td>"+
+                                    data[i].debit+"</td><td>"+data[i].importAmount+"</td><td>"+data[i].memo+"</td><td>"+checkStr+"</td><td>"+data[i].importDate+"</td></tr>");
+                
             }
-            inittable(arrayReturn);
+            //inittable(arrayReturn);
         }
     });
 }
@@ -200,8 +214,12 @@ function inittable(data) {
 
 }
 
-function updateImpData(impSeqId, markInd) {
+function updateImpData(impSeqId, checkObj) {
     //alert("updateImpData:" + impSeqId + " " + markInd);
+    var markInd = "N";
+    if(checkObj.checked) {
+        markInd = "Y";
+    }
     $('input[name="impSeqIdSave"]').val(impSeqId);
     $('input[name="markIndSave"]').val(markInd);
     //$( "#impForm" ).submit();
@@ -209,7 +227,12 @@ function updateImpData(impSeqId, markInd) {
     $.post("http://localhost:8080/HomeFinServices/rest/Pend/update", $("#impForm").serialize()).done(function (data) {
         if (data == "SUCCESS") {
 
-            displayImpData($('#impDates option:selected').val());
+            //displayImpData($('#impDates option:selected').val());
+            
+            //alert("saved!")
+            
+        } else {
+            alert("error!!")
         }
 
     });
