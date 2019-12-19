@@ -59,7 +59,7 @@ public class CsvFileImportCtrl extends BaseCntlr {
     public Response uploadCsvFile(@FormDataParam("file") InputStream uploadedInputStream,
             @FormDataParam("file") FormDataContentDisposition fileDetail,
             @FormDataParam("fileType") String fileType) {
-        System.out.println("HERE fileType" + fileType);
+        //System.out.println("HERE fileType" + fileType);
         if (uploadedInputStream == null || fileDetail == null) {
             return Response.status(400).entity("Invalid form data").build();
         }
@@ -76,7 +76,7 @@ public class CsvFileImportCtrl extends BaseCntlr {
     }
 
     private void saveFile(InputStream inStream, String target) throws IOException {
-        System.out.println(target + "==");
+        //System.out.println(target + "==");
         OutputStream out = null;
         int read = 0;
         byte[] bytes = new byte[1024];

@@ -65,13 +65,13 @@ function clickGenerateCsvBtn() {
 function clickUpdateTranBtn() {
     var valDate = $('#impDates option:selected').val();
     
-    $('input[name="updateImportDate"]').val(valDate);
+    $('input[name="importedDate"]').val(valDate);
     //$( "#impForm" ).submit();
 
-    $.post("http://localhost:8080/HomeFinServices/rest/Pend/update", $("#updateForm").serialize()).done(function (data) {
+    $.post("http://localhost:8080/HomeFinServices/rest/Pend/updateTrans", $("#updateForm").serialize()).done(function (data) {
         if (data == "Updated") {
 
-            alert("Transactions Updated!")
+            alert("Transactions Updated!");
         }
 
     });

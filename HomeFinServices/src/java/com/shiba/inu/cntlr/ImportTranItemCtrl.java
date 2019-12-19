@@ -81,7 +81,7 @@ public class ImportTranItemCtrl extends BaseCntlr {
     @Path("/updateTrans")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response updateTransactions(@FormParam("importDate") String importDate) {
+    public Response updateTransactions(@FormParam("importedDate") String importDate) {
         service.updateTransactions(importDate);
         return Response.ok("Updated").build();
     }

@@ -201,7 +201,7 @@ public class ImportTransServiceImpl extends BaseServiceImpl implements ImportTra
 
     @Override
     public List<String> getListOfImportedDates() {
-        final String sql = "select distinct to_char(trunc(import_date),'MM-dd-YYYY') import_date from import_transaction_items where import_status is null";
+        final String sql = "select distinct to_char(trunc(import_date),'MM-dd-YYYY') import_date from import_transaction_items where import_status is null order by import_date";
         Connection conn = super.getConnection();
         PreparedStatement stmt = null;
         List<String> list = null;
@@ -299,6 +299,7 @@ public class ImportTransServiceImpl extends BaseServiceImpl implements ImportTra
     
     @Override
     public void updateTransactions(String importDate) {
+        System.out.println("1importDate:"+importDate);
         Date statementDate = null;
         SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
         try {
