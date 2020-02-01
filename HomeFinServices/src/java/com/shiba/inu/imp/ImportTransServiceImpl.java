@@ -45,7 +45,7 @@ public class ImportTransServiceImpl extends BaseServiceImpl implements ImportTra
         try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
             String line = br.readLine();
 
-            while (line != null) {
+            while (line != null && !"".equals(line.trim())) {
                 String[] attributes = line.split(",");
                 if (attributes != null && attributes.length > 0) {
                     if ("Transaction date".equalsIgnoreCase(attributes[0])) {
@@ -129,6 +129,7 @@ public class ImportTransServiceImpl extends BaseServiceImpl implements ImportTra
         } else {
             try {
                 SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
+                System.out.println("attributes[0]:"+attributes[0]);
                 java.util.Date transactionDate = dFormat.parse(attributes[0]);
                 java.util.Date postedDate = dFormat.parse(attributes[1]);      
                 //Date transactionDate = new SimpleDateFormat("YYYY-MM-dd").parse(attributes[0]);
