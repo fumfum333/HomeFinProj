@@ -180,7 +180,11 @@ public class TransactionServiceImpl extends BaseServiceImpl implements Transacti
             while (rs.next()) {
                 TransactionItem item = new TransactionItem();
                 item.setTransactionId(rs.getLong("transaction_id"));
-                item.setCategoryId(rs.getString("CATEGORY_ID"));
+                if(rs.getString("CATEGORY_ID") == null) {
+                    item.setCategoryId("");
+                } else {
+                    item.setCategoryId(rs.getString("CATEGORY_ID"));
+                }
                 item.setSourceId(rs.getString("source_id"));
                 item.setTransAmount(rs.getBigDecimal("TRANS_AMOUNT"));
                 item.setDescription(rs.getString("description"));
